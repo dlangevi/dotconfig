@@ -82,18 +82,3 @@ end
 
 
 vim.cmd[[colorscheme sonokai]]
-
-local telescope = require('telescope.builtin')
-
-local wk = require("which-key")
-wk.register({
-  f = {
-    name = "telescope", 
-    f = { telescope.find_files, "Find File" }, 
-    p = { telescope.git_files, "Find git Files"},
-    b = { telescope.buffers, "Find Buffer" },
-    g = { telescope.live_grep, "Grep Project" },
-    r = { telescope.resume, "Resume last Search" },
-    h = { telescope.help_tags, "Search help tags"},
-  },
-}, { prefix = "<leader>" })
