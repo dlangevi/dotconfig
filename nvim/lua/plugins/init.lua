@@ -20,6 +20,15 @@ return require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons' }
   }
 
+  -- startup screen
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.config)
+    end
+}
+
   -- added editing functionality
   use({
     "kylechui/nvim-surround",
@@ -40,10 +49,13 @@ return require('packer').startup(function(use)
   use {
     'nvim-tree/nvim-tree.lua',
     requires = { 'nvim-tree/nvim-web-devicons' },
+    ft = 'alpha',
     tag = 'nightly', -- optional, updated every week. (see issue #1193)
     config = function()
       require('nvim-tree').setup({
         open_on_setup = true,
+        ignore_buffer_on_setup = true,
+        update_focused_file = { enable = true },
         view = {
           side = "right",
           preserve_window_proportions = true,
