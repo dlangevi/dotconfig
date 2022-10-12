@@ -1,7 +1,10 @@
-require('plugins')
 
 -- Globals?
 vim.g.mapleader = " "
+
+require('plugins')
+
+-- require('telescope-config')
 
 -- What the actual fuck is going on here
 vim.cmd ":set noswapfile"
@@ -30,7 +33,6 @@ vim.o.shell = "/usr/bin/bash"
 -- set verbose=1
 vim.o.scrolloff = 10
 
-require('coc')
 require('Navigator').setup()
 require('lualine').setup()
 require('nvim-treesitter.configs').setup({
@@ -64,8 +66,11 @@ vim.keymap.set('n', "<c-j>", '<CMD>NavigatorDown<CR>')
 vim.keymap.set('n', "<c-p>", '<CMD>NavigatorPrevious<CR>')
 vim.keymap.set('n', '--', ':edit<Space>#<cr>')
 
+-- Easy quit
+vim.keymap.set('n', 'q', ':q<CR>')
+
 vim.g.NERDTreeWinPos = "right"
-vim.keymap.set('n', "<leader>t", ':NERDTreeToggle<CR>')
+vim.keymap.set('n', "<leader>t", ':NERDTreeToggle<CR>:wincmd =<CR>')
 
 function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
@@ -75,11 +80,20 @@ function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.git_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>fr', builtin.resume, {})
 
 vim.cmd[[colorscheme sonokai]]
+
+local telescope = require('telescope.builtin')
+
+local wk = require("which-key")
+wk.register({
+  f = {
+    name = "telescope", 
+    f = { telescope.find_files, "Find File" }, 
+    p = { telescope.git_files, "Find git Files"},
+    b = { telescope.buffers, "Find Buffer" },
+    g = { telescope.live_grep, "Grep Project" },
+    r = { telescope.resume, "Resume last Search" },
+    h = { telescope.help_tags, "Search help tags"},
+  },
+}, { prefix = "<leader>" })
