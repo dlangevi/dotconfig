@@ -25,6 +25,8 @@ vim.o.softtabstop = 2
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 
+vim.o.laststatus = 3
+
 -- Folds
 vim.o.foldmethod = "syntax"
 vim.o.foldlevel = 3
@@ -45,7 +47,7 @@ require('nvim-treesitter.configs').setup({
   },
   highlight = {
     enable = true,
-    disable = function(lang, buf)
+    disable = function(_, buf)
       local max_filesize = 100 * 1024 -- 100 KB
       local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
       if ok and stats and stats.size > max_filesize then
@@ -70,13 +72,5 @@ vim.keymap.set('n', 'q', ':q<CR>')
 
 vim.g.NERDTreeWinPos = "right"
 vim.keymap.set('n', "<leader>d", ':NERDTreeToggle<CR>:wincmd =<CR>')
-
-function map(mode, lhs, rhs, opts)
-  local options = { noremap = true }
-  if opts then
-    options = vim.tbl_extend("force", options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
 
 vim.cmd [[colorscheme sonokai]]
