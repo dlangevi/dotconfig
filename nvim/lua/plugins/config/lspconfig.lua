@@ -20,7 +20,7 @@ local on_attach = function(enableformat)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wl', function()
@@ -60,10 +60,8 @@ if vim.fn.exepath('vscode-eslint-language-server') then
   require 'lspconfig'.eslint.setup {
     filetypes = { 'typescript',
       'javascript',
-      'javascriptreact',
-      'typescriptreact',
       'vue',
-      'json' },
+      },
     on_attach = function(client, bufnr)
       local bufopts = { noremap = true, silent = true, buffer = bufnr }
       vim.keymap.set('n', '<leader>f', "<cmd>EslintFixAll<cr>", bufopts)

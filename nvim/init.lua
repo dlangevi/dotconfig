@@ -70,7 +70,5 @@ vim.keymap.set('n', '--', ':edit<Space>#<cr>')
 -- Easy quit
 vim.keymap.set('n', 'q', ':q<CR>')
 
-vim.g.NERDTreeWinPos = "right"
-vim.keymap.set('n', "<leader>d", ':NERDTreeToggle<CR>:wincmd =<CR>')
 
 vim.cmd [[colorscheme sonokai]]
