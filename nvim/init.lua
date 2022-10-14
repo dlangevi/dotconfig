@@ -3,24 +3,21 @@ vim.g.mapleader = " "
 
 require('plugins')
 
--- require('telescope-config')
-
--- What the actual fuck is going on here
-vim.cmd ":set noswapfile"
-
+vim.g.termguicolors = true
 -- ??
 vim.o.wildmode = "longest,list,full"
 vim.o.wildmenu = true
 
 vim.o.mouse = false
-vim.o.nofoldenable = true
-vim.o.noundofile = true
+vim.o.swapfile = false
+vim.o.foldenable = false
+vim.o.undofile = false 
 vim.o.relativenumber = true
 vim.o.nu = true
 
 vim.o.autoindent = true
 vim.o.expandtab = true
-vim.o.smartab = true
+vim.g.smartab = true
 vim.o.softtabstop = 2
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
@@ -35,7 +32,6 @@ vim.o.shell = "/usr/bin/bash"
 vim.o.scrolloff = 10
 
 require('Navigator').setup()
-require('lualine').setup()
 require('nvim-treesitter.configs').setup({
   ensure_installed = {
     "c",

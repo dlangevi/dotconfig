@@ -17,17 +17,34 @@ return require('packer').startup(function(use)
   use 'sainnhe/sonokai'
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' }
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function()
+      require('lualine').setup({
+        options = {
+          theme = 'horizon',
+        },
+        winbar = {
+          lualine_b = { 'filetype' },
+          lualine_c = {
+            { 'filename', }
+          },
+        },
+        inactive_winbar = {
+          lualine_b = { 'filetype' },
+          lualine_c = { 'filename' },
+        }
+      })
+    end,
   }
 
   -- startup screen
   use {
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
-    config = function ()
-        require'alpha'.setup(require'alpha.themes.startify'.config)
+    config = function()
+      require 'alpha'.setup(require 'alpha.themes.startify'.config)
     end
-}
+  }
 
   -- added editing functionality
   use({
@@ -55,7 +72,6 @@ return require('packer').startup(function(use)
       require('nvim-tree').setup({
         open_on_setup = true,
         ignore_buffer_on_setup = true,
-        -- update_focused_file = { enable = true },
         view = {
           side = "right",
           preserve_window_proportions = true,

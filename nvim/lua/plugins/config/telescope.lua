@@ -12,7 +12,19 @@ local options = {
         ["<C-k>"] = "move_selection_previous",
       }
     }
-  }
+  },
+  pickers = {
+    help_tags = {
+      mappings = {
+        i = {
+          ["<CR>"] = "select_vertical",
+        },
+        n = {
+          ["<CR>"] = "select_vertical",
+        },
+      },
+    },
+  },
 }
 
 telescope.setup(options)
