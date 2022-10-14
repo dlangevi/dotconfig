@@ -22,6 +22,12 @@ return require('packer').startup(function(use)
       require 'plugins.config.lualine'
     end,
   }
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require 'colorizer'.setup()
+    end,
+  }
 
   -- startup screen
   use {
@@ -33,14 +39,14 @@ return require('packer').startup(function(use)
   }
 
   -- added editing functionality
-  use({
-    "kylechui/nvim-surround",
-    tag = "*", -- for stability
-    config = function()
-      require("nvim-surround").setup({
-      })
-    end
-  })
+  -- use({
+  --   "kylechui/nvim-surround",
+  --   tag = "*", -- for stability
+  --   config = function()
+  --     require("nvim-surround").setup({
+  --     })
+  --   end
+  -- })
 
   -- enable tmux navigation
   use { 'numToStr/Navigator.nvim',
