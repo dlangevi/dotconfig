@@ -19,21 +19,7 @@ return require('packer').startup(function(use)
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
-      require('lualine').setup({
-        options = {
-          theme = 'horizon',
-        },
-        winbar = {
-          lualine_b = { 'filetype' },
-          lualine_c = {
-            { 'filename', }
-          },
-        },
-        inactive_winbar = {
-          lualine_b = { 'filetype' },
-          lualine_c = { 'filename' },
-        }
-      })
+      require 'plugins.config.lualine'
     end,
   }
 

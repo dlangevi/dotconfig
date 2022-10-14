@@ -92,7 +92,7 @@ _G.packer_plugins = {
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
   ["lualine.nvim"] = {
-    config = { "\27LJ\2\nú\1\0\0\6\0\16\0\0236\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\a\0005\4\6\0=\4\b\0034\4\3\0005\5\t\0>\5\1\4=\4\n\3=\3\v\0025\3\r\0005\4\f\0=\4\b\0035\4\14\0=\4\n\3=\3\15\2B\0\2\1K\0\1\0\20inactive_winbar\1\2\0\0\rfilename\1\0\0\1\2\0\0\rfiletype\vwinbar\14lualine_c\1\2\0\0\rfilename\14lualine_b\1\0\0\1\2\0\0\rfiletype\foptions\1\0\0\1\0\1\ntheme\fhorizon\nsetup\flualine\frequire\0" },
+    config = { "\27LJ\2\n6\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\27plugins.config.lualine\frequire\0" },
     loaded = true,
     path = "/home/dlangevi/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
@@ -189,7 +189,7 @@ try_loadstring("\27LJ\2\n8\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\29plugins
 time([[Config for nvim-lspconfig]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\nú\1\0\0\6\0\16\0\0236\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\a\0005\4\6\0=\4\b\0034\4\3\0005\5\t\0>\5\1\4=\4\n\3=\3\v\0025\3\r\0005\4\f\0=\4\b\0035\4\14\0=\4\n\3=\3\15\2B\0\2\1K\0\1\0\20inactive_winbar\1\2\0\0\rfilename\1\0\0\1\2\0\0\rfiletype\vwinbar\14lualine_c\1\2\0\0\rfilename\14lualine_b\1\0\0\1\2\0\0\rfiletype\foptions\1\0\0\1\0\1\ntheme\fhorizon\nsetup\flualine\frequire\0", "config", "lualine.nvim")
+try_loadstring("\27LJ\2\n6\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\27plugins.config.lualine\frequire\0", "config", "lualine.nvim")
 time([[Config for lualine.nvim]], false)
 -- Config for: alpha-nvim
 time([[Config for alpha-nvim]], true)
