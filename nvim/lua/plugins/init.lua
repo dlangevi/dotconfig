@@ -55,22 +55,7 @@ return require('packer').startup(function(use)
     ft = 'alpha',
     tag = 'nightly', -- optional, updated every week. (see issue #1193)
     config = function()
-      require('nvim-tree').setup({
-        open_on_setup = true,
-        ignore_buffer_on_setup = true,
-        view = {
-          side = "right",
-          preserve_window_proportions = true,
-        },
-        actions = {
-          open_file = {
-            window_picker = {
-              chars = "ASDFGHJKL"
-            },
-          },
-        },
-      })
-      vim.keymap.set('n', "<leader>d", ':NvimTreeToggle<CR>')
+      require "plugins.config.nvim-tree"
     end,
   }
 
@@ -90,7 +75,10 @@ return require('packer').startup(function(use)
   -- LSP and syntax highlighing
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
+    run = ':TSUpdate',
+    config = function()
+      require 'plugins.config.treesitter'
+    end
   }
   use { 'neovim/nvim-lspconfig',
     config = function()
