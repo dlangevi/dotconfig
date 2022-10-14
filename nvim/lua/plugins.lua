@@ -1,7 +1,7 @@
 local packer_grp = vim.api.nvim_create_augroup("packer_user_config", { clear = true })
 vim.api.nvim_create_autocmd(
   { "BufWritePost" },
-  { pattern = "init.lua", command = "source <afile> | PackerCompile", group = packer_grp }
+  { pattern = "plugins.lua", command = "source <afile> | PackerCompile", group = packer_grp }
 )
 
 vim.cmd [[packadd packer.nvim]]
@@ -39,14 +39,14 @@ return require('packer').startup(function(use)
   }
 
   -- added editing functionality
-  -- use({
-  --   "kylechui/nvim-surround",
-  --   tag = "*", -- for stability
-  --   config = function()
-  --     require("nvim-surround").setup({
-  --     })
-  --   end
-  -- })
+  use({
+    "kylechui/nvim-surround",
+    tag = "*", -- for stability
+    config = function()
+      require("nvim-surround").setup({
+      })
+    end
+  })
 
   -- enable tmux navigation
   use { 'numToStr/Navigator.nvim',

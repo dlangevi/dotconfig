@@ -23,15 +23,17 @@ require('lualine').setup({
 
   },
   winbar = {
-    lualine_b = { {
+    lualine_a = { {
       'filetype',
     } },
+    lualine_b = {},
     lualine_c = { {
       'filename',
     } },
   },
   inactive_winbar = {
-    lualine_b = { 'filetype' },
+    lualine_a = { 'filetype' },
+    lualine_b = {},
     lualine_c = { 'filename' },
   }
 })
