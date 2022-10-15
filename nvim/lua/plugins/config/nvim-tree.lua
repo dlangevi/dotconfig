@@ -1,4 +1,6 @@
-require('nvim-tree').setup({
+local nvimtree = require('nvim-tree')
+
+nvimtree.setup({
   open_on_setup = true,
   ignore_buffer_on_setup = true,
   view = {
@@ -13,4 +15,9 @@ require('nvim-tree').setup({
     },
   },
 })
-vim.keymap.set('n', "<leader>d", ':NvimTreeToggle<CR>')
+
+require('keymapper').register({
+  D = {
+    nvimtree.toggle, "Toggle NvimTree"
+  },
+}, { prefix = "<leader>" })

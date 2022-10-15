@@ -1,13 +1,25 @@
+-- wont work on first load
+local navigator = require('Navigator');
+local which = require('which-key');
 -- Keybindings
-vim.keymap.set('n', "<c-h>", '<CMD>NavigatorLeft<CR>')
-vim.keymap.set('n', "<c-l>", '<CMD>NavigatorRight<CR>')
-vim.keymap.set('n', "<c-k>", '<CMD>NavigatorUp<CR>')
-vim.keymap.set('n', "<c-j>", '<CMD>NavigatorDown<CR>')
-vim.keymap.set('n', "<c-p>", '<CMD>NavigatorPrevious<CR>')
-vim.keymap.set('n', '--', ':edit<Space>#<cr>')
+require('keymapper').register({
+  -- Tmux Navigator
+  ["<c-h>"] = { navigator.left, 'Navigate Left' },
+  ["<c-l>"] = { navigator.right,  'Navigate Right' },
+  ["<c-k>"] = { navigator.up,  'Navigate Up' },
+  ["<c-j>"] = { navigator.down,  'Navigate Down' },
+  -- Preview all key bindings
+  ['<leader>?'] = { which.show, "Preview all bindings" },
 
--- Some way of doing this automatically would be nice when in nvim lua files
-vim.keymap.set('n', '<leader><leader>s', '<cmd>source %<cr>')
+  -- Old habit I have picked up from a previous leader key. switches to
+  -- whatever buffer was previously in the current pane
+  ['--'] = { ':edit<Space>#<cr>', "Edit previous file"},
 
--- Easy quit
-vim.keymap.set('n', 'q', ':q<CR>')
+  -- Some way of doing this automatically would be nice when in nvim lua files
+  -- maybe some comment at the top of a file would indicate its safe to reload
+  ['<leader><leader>s'] = {'<cmd>source %<cr>', "Source current file" },
+
+  -- Easy quit (todo need an alterante macro binding
+  q = {':q<CR>', "Quit"},
+
+})

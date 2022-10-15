@@ -14,6 +14,10 @@ local options = {
     }
   },
   pickers = {
+    -- TODO desired behaviour 
+    -- If only one pane exists, vertical split
+    -- If multiple pane exists and one is a help pane, replace its contents
+    -- Otherwise replace current pane contents
     help_tags = {
       mappings = {
         i = {
@@ -31,8 +35,7 @@ telescope.setup(options)
 
 local builtin = require('telescope.builtin')
 
-local wk = require("which-key")
-wk.register({
+require('keymapper').register({
   s = {
     name = "telescope",
     f = { builtin.find_files, "Find File" },
