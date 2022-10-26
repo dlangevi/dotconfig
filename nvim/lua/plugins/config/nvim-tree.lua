@@ -17,7 +17,10 @@ nvimtree.setup({
 })
 
 require('keymapper').register({
-  D = {
-    nvimtree.toggle, "Toggle NvimTree"
-  },
+  t = {
+    name = "nvim-tree",
+    d = {
+      nvimtree.toggle, "Toggle NvimTree"
+    },
+  }
 }, { prefix = "<leader>" })

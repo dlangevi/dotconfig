@@ -107,7 +107,7 @@ end
 
 if vim.fn.exepath('lua-language-server') then
   require 'lspconfig'.sumneko_lua.setup {
-    on_attach = on_attach(),
+    on_attach = on_attach({}),
     flags = lsp_flags,
     settings = {
       Lua = {
@@ -129,5 +129,15 @@ if vim.fn.exepath('lua-language-server') then
       },
     },
   }
+end
 
+if vim.fn.exepath('rust-analyzer') then
+  require('lspconfig')['rust_analyzer'].setup{
+      on_attach = on_attach({}),
+      flags = lsp_flags,
+      -- Server-specific settings...
+      settings = {
+        ["rust-analyzer"] = {}
+      }
+  }
 end

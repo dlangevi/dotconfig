@@ -29,6 +29,22 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- code running
+  use { 'CRAG666/code_runner.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('code_runner').setup({
+        -- put here the commands by filetype
+        filetype = {
+          python = "python3 -u",
+          typescript = "deno run",
+          rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt"
+        },
+      })
+    end
+
+  }
+
   -- startup screen
   use {
     'goolord/alpha-nvim',
@@ -39,6 +55,12 @@ return require('packer').startup(function(use)
   }
 
   -- added editing functionality
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
   use({
     "kylechui/nvim-surround",
     tag = "*", -- for stability

@@ -44,5 +44,6 @@ require('keymapper').register({
     g = { builtin.live_grep, "Grep Project" },
     r = { builtin.resume, "Resume last Search" },
     h = { builtin.help_tags, "Search help tags" },
+    w = { builtin.grep_string, "Search for word" },
   },
 }, { prefix = "<leader>" })
