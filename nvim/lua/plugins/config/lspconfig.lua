@@ -82,7 +82,7 @@ require 'lspconfig'.volar.setup {
     'json' },
   on_attach = on_attach({
     -- TODO Still not too happy with this
-    customFormatter = function ()
+    customFormatter = function()
       vim.cmd "EslintFixAll"
     end
   }),
@@ -99,7 +99,7 @@ if vim.fn.exepath('vscode-eslint-language-server') then
     on_attach = function()
       vim.cmd([[
 					au BufWritePre <buffer> silent! EslintFixAll
-			]])
+			]]  )
     end,
     flags = lsp_flags,
   }
@@ -131,13 +131,29 @@ if vim.fn.exepath('lua-language-server') then
   }
 end
 
+-- go install golang.org/x/tools/gopls@latest
+if vim.fn.exepath('gopls') then
+require 'lspconfig'.gopls.setup {
+  on_attach = on_attach({}),
+  flags = lsp_flags,
+}
+end
+
 if vim.fn.exepath('rust-analyzer') then
-  require('lspconfig')['rust_analyzer'].setup{
-      on_attach = on_attach({}),
-      flags = lsp_flags,
-      -- Server-specific settings...
-      settings = {
-        ["rust-analyzer"] = {}
-      }
+  require('lspconfig')['rust_analyzer'].setup {
+    on_attach = on_attach({}),
+    flags = lsp_flags,
+    -- Server-specific settings...
+    settings = {
+      ["rust-analyzer"] = {}
+    }
+  }
+end
+
+-- npm i -g vscode-langservers-extracted
+if vim.fn.exepath('vscode-json-language-server') then 
+  require 'lspconfig'.jsonls.setup {
+    on_attach = on_attach({}),
+    flags = lsp_flags,
   }
 end

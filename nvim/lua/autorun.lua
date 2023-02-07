@@ -29,6 +29,6 @@ vim.api.nvim_create_user_command("AttachRunner", function ()
   vim.api.nvim_set_current_win(winAfter);
   local bufnr = vim.api.nvim_get_current_buf();
   vim.api.nvim_set_current_win(win);
-  attach_to_buffer(bufnr, { "deno", "run", "test.ts" }, "*.ts");
+  attach_to_buffer(bufnr, { "deno", "run", "--allow-net", "test.ts" }, "*.ts");
 end, {})
 

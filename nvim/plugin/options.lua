@@ -8,6 +8,7 @@ vim.opt.foldenable = false
 vim.opt.undofile = false
 vim.opt.relativenumber = true
 vim.opt.nu = true
+vim.opt.clipboard = "unnamed"
 
 vim.opt.autoindent = true
 vim.opt.expandtab = true
