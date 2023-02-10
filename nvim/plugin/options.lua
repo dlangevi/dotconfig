@@ -1,4 +1,3 @@
-vim.opt.termguicolors = true
 vim.opt.wildmode = "longest,list,full"
 vim.opt.wildmenu = true
 
