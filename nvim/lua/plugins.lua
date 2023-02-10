@@ -1,37 +1,40 @@
-local packer_grp = vim.api.nvim_create_augroup("packer_user_config", { clear = true })
-vim.api.nvim_create_autocmd(
-  { "BufWritePost" },
-  { pattern = "plugins.lua", command = "source <afile> | PackerCompile", group = packer_grp }
-)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-vim.cmd [[packadd packer.nvim]]
-
-return require('packer').startup(function(use)
-  -- Package Management
-  use 'wbthomason/packer.nvim'
+return require('lazy').setup({
 
 
   -- Visual enhancements
-  use "lukas-reineke/indent-blankline.nvim"
-  use "rafamadriz/neon"
-  use 'sainnhe/sonokai'
-  use {
+  "lukas-reineke/indent-blankline.nvim",
+  "rafamadriz/neon",
+  'sainnhe/sonokai',
+  {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require 'plugins.config.lualine'
     end,
-  }
-  use {
+  },
+  {
     'norcalli/nvim-colorizer.lua',
     config = function()
       require 'colorizer'.setup()
     end,
-  }
+  },
 
   -- code running
-  use { 'CRAG666/code_runner.nvim',
-    requires = 'nvim-lua/plenary.nvim',
+  { 'CRAG666/code_runner.nvim',
+    dependencies = 'nvim-lua/plenary.nvim',
     config = function()
       require('code_runner').setup({
         -- put here the commands by filetype
@@ -42,36 +45,35 @@ return require('packer').startup(function(use)
         },
       })
     end
-
-  }
+  },
 
   -- startup screen
-  use {
+  {
     'goolord/alpha-nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require 'alpha'.setup(require 'alpha.themes.startify'.config)
     end
-  }
+  },
 
   -- added editing functionality
-  use {
+  {
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
     end
-  }
-  use({
+  },
+  {
     "kylechui/nvim-surround",
-    tag = "*", -- for stability
+    version = "*", -- for stability
     config = function()
       require("nvim-surround").setup({
       })
     end
-  })
-  use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
-  use({ "hrsh7th/nvim-cmp",
-    requires = {
+  },
+  { "L3MON4D3/LuaSnip", version = "v<CurrentMajor>.*" },
+  { "hrsh7th/nvim-cmp",
+    dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lua",
@@ -82,54 +84,55 @@ return require('packer').startup(function(use)
     config = function()
       require "plugins.config.completion"
     end
-  })
+  },
 
   -- enable tmux navigation
-  use { 'numToStr/Navigator.nvim',
+  { 'numToStr/Navigator.nvim',
     config = function()
       require('Navigator').setup()
-    end }
+    end 
+  },
 
   -- filebrowsing
-  use {
+  {
     'nvim-tree/nvim-tree.lua',
-    requires = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     ft = 'alpha',
-    tag = 'nightly', -- optional, updated every week. (see issue #1193)
+    version = 'nightly', -- optional, updated every week. (see issue #1193)
     config = function()
       require "plugins.config.nvim-tree"
     end,
-  }
+  },
 
   -- fuzzy finder
-  use {
+  {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.0',
-    requires = {
+    version = '0.1.0',
+    dependencies = {
       { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
     },
     config = function()
       require "plugins.config.telescope"
     end,
-  }
+  },
 
   -- LSP and syntax highlighing
-  use {
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+    build = ':TSUpdate',
     config = function()
       require 'plugins.config.treesitter'
     end
-  }
-  use { 'neovim/nvim-lspconfig',
+  },
+  { 'neovim/nvim-lspconfig',
     config = function()
       require 'plugins.config.lspconfig'
     end
-  }
+  },
 
   -- Helpful hints for keybinds
-  use {
+  {
     "folke/which-key.nvim",
     config = function()
       require("which-key").setup {
@@ -140,5 +143,6 @@ return require('packer').startup(function(use)
         }
       }
     end
-  }
-end)
+  },
+}
+)
