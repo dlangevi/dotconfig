@@ -65,13 +65,6 @@ return {
     },
 
 
-    -- LSP and syntax highlighing
-    { 'neovim/nvim-lspconfig',
-        config = function()
-          require 'plugins.config.lspconfig'
-        end
-    },
-
     -- Helpful hints for keybinds
     {
         "folke/which-key.nvim",
