@@ -76,21 +76,24 @@ return {
           debounce_text_changes = 150,
       }
       -- npm install -g @volar/vue-language-server
-      require 'lspconfig'.volar.setup {
-          filetypes = { 'typescript',
-              'javascript',
-              'javascriptreact',
-              'typescriptreact',
-              'vue',
-              'json' },
-          on_attach = on_attach({
-              -- TODO Still not too happy with this
-              customFormatter = function()
-                vim.cmd "EslintFixAll"
-              end
-          }),
-          flags = lsp_flags,
-      }
+      if vim.fn.exepath('vue-language-server') then
+        require 'lspconfig'.volar.setup {
+            filetypes = { 'typescript',
+                'javascript',
+                'javascriptreact',
+                'typescriptreact',
+                'vue',
+                'html',
+                'json' },
+            on_attach = on_attach({
+                -- TODO Still not too happy with this
+                customFormatter = function()
+                  vim.cmd "EslintFixAll"
+                end
+            }),
+            flags = lsp_flags,
+        }
+      end
 
       -- npm i -g vscode-langservers-extracted
       if vim.fn.exepath('vscode-eslint-language-server') then
@@ -109,7 +112,7 @@ return {
       end
 
       if vim.fn.exepath('lua-language-server') then
-        require 'lspconfig'.sumneko_lua.setup {
+        require 'lspconfig'.lua_ls.setup {
             on_attach = on_attach({}),
             flags = lsp_flags,
             settings = {
@@ -156,6 +159,19 @@ return {
       -- npm i -g vscode-langservers-extracted
       if vim.fn.exepath('vscode-json-language-server') then
         require 'lspconfig'.jsonls.setup {
+            on_attach = on_attach({}),
+            flags = lsp_flags,
+        }
+      end
+
+      -- pacman -S haskell-language-server
+      if vim.fn.exepath('haskell-language-server-wrapper') then
+        require 'lspconfig'.hls.setup {
+            filetypes = {
+              'haskell',
+              'lhaskell',
+              'cabal',
+            },
             on_attach = on_attach({}),
             flags = lsp_flags,
         }

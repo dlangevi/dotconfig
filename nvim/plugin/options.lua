@@ -13,6 +13,7 @@ vim.opt.autoindent = true
 vim.opt.expandtab = true
 -- Why is this a global vs opt?
 vim.g.smartab = true
+vim.g.leetcode_browser = 'firefox'
 vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
