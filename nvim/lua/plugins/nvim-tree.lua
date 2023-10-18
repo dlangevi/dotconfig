@@ -7,6 +7,7 @@ return
     version = 'nightly', -- optional, updated every week. (see issue #1193)
     config = function()
       local nvimtree = require('nvim-tree')
+      local api = require('nvim-tree.api')
 
       nvimtree.setup({
           view = {
@@ -26,7 +27,7 @@ return
           t = {
               name = "nvim-tree",
               d = {
-                  nvimtree.toggle, "Toggle NvimTree"
+                  api.tree.toggle, "Toggle NvimTree"
               },
           }
       }, { prefix = "<leader>" })
