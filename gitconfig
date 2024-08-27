@@ -1,0 +1,37 @@
+[credential]
+	helper = manager
+[user]
+	name = David Langevin
+	email = david.langevin@docusign.com
+[credential "helperselector"]
+	selected = manager
+[safe]
+	directory = C:/Users/David.Langevin/personal/GlazeWMSync
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only --features=interactive
+[delta]
+	features = decorations
+[delta "interactive"]
+	keep-plus-minus-markers = false
+[delta "decorations"]
+	commit-decoration-style = blue ol
+	commit-style = raw
+	file-style = omit
+	hunk-header-decoration-style = blue
+	hunk-header-file-style = bold red
+	hunk-header-line-number-style = "#067a00"
+	hunk-header-style = file line-number syntax
+	merge-conflict-begin-symbol = ~
+	merge-conflict-end-symbol = ~
+	merge-conflict-ours-diff-header-style = "#D08770 bold"
+	merge-conflict-ours-diff-header-decoration-style = "#434C5E box"
+	merge-conflict-theirs-diff-header-style = "#EBCB8B bold"
+	merge-conflict-theirs-diff-header-decoration-style = "#434C5E box"
+	blame-palette = "#2E3440 #3B4252 #434C5E #4C566A"
+	keep-plus-minus-markers = false
+[oh-my-zsh]
+	hide-dirty = 1
+[alias]
+  tree = log --graph --decorate --pretty=oneline --abbrev-commit

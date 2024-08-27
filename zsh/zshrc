@@ -1,0 +1,82 @@
+ZIM_HOME="/home/dlangevi/.config/zim"
+
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+fi
+
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
+
+# local specialties
+source /home/dlangevi/.localzshrc
+
+export PATH=$HOME/.dotnet/:$HOME/bin:/usr/local/bin:/snap/bin:$PATH
+export DOTNET_ROOT=$HOME/.dotnet
+
+autoload -U promptinit
+promptinit
+
+source $HOME/.config/zsh/dlangevi.zsh-theme
+
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' frequency 13
+
+setopt inc_append_history
+setopt share_history
+
+export LANG=en_US.UTF-8
+
+eval $(minikube -p minikube docker-env)
+
+export EDITOR='vim'
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+
+# the thing I do like from emacs bindings
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
+bindkey "^P" up-line-or-local-history
+bindkey "^N" down-line-or-local-history
+bindkey "${key[Up]}" up-line-or-local-history
+bindkey "${key[Down]}" down-line-or-local-history
+
+up-line-or-local-history() {
+    zle set-local-history 1
+    zle up-line-or-history
+    zle set-local-history 0
+}
+zle -N up-line-or-local-history
+down-line-or-local-history() {
+    zle set-local-history 1
+    zle down-line-or-history
+    zle set-local-history 0
+}
+zle -N down-line-or-local-history
+
+zstyle ':completion:*' special-dirs true
+
+alias python=python3
+
+alias vim=nvim
+alias vimdiff="nvim -d"
+alias zsh-reload="source ~/.zshrc"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# speed up midnight commander startup time.
+alias mc='mc --nosubshell'
+
+# https://github.com/junegunn/fzf
+export FZF_DEFAULT_OPTS='--height 50% --layout=reverse '
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+
+# https://github.com/sharkdp/bat
+export BAT_STYLE=numbers,changes
+
