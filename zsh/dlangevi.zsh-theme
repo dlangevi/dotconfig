@@ -9,7 +9,7 @@ function theme_precmd {
 
 add-zsh-hook precmd  theme_precmd
 
-PROMPT="%(?.%F{green}.%F{red})➜%f "
+PROMPT="%(?.%F{green}.%F{red})>%f "
 
 # The git prompt will include the current branch you are on
 # First set the color we want for the branch

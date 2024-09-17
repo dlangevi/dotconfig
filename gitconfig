@@ -1,5 +1,5 @@
 [credential]
-	helper = manager
+	helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-wincred.exe
 [user]
 	name = David Langevin
 	email = david.langevin@docusign.com
@@ -11,6 +11,8 @@
 	pager = delta
 [interactive]
 	diffFilter = delta --color-only --features=interactive
+[fetch]
+  prune = true
 [delta]
 	features = decorations
 [delta "interactive"]
